@@ -9,3 +9,8 @@ Feature: Home page
     Given User is on Home page
     When User searches for a product
     Then The product name should be displayed
+
+   Scenario: Display products from low to high
+     Given User is on Home page
+     When User sorts products from low to high
+     Then Products display in the low to high order
