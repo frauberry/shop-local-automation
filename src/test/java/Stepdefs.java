@@ -49,4 +49,14 @@ public class Stepdefs {
     public void theProductNameShouldBeDisplayed() {
         Assertions.assertThat(DriverUtils.waitElementToBeVisible(homePage.searchItem, 10).isDisplayed()).isTrue();
     }
+
+    @When("User sorts products from low to high")
+    public void userSortsProductsFromLowToHigh() {
+        homePage.sortItemsFromLowToHigh();
+    }
+
+    @Then("Products display in the low to high order")
+    public void productsDisplayInTheLowToHighOrder() {
+        Assertions.assertThat(homePage.arePricesDisplayedFromLowToHigh()).isTrue();
+    }
 }
