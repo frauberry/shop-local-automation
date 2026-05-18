@@ -39,4 +39,14 @@ public class Stepdefs {
     public void itemsNumberBubbleShouldBeDisplayedOnTheCartIcon() {
         Assertions.assertThat(DriverUtils.waitElementToBeVisible(homePage.itemCount, 10).isDisplayed()).isTrue();
     }
+
+    @When("User searches for a product")
+    public void userSearchesForAProduct() {
+        homePage.searchForTheItem();
+    }
+
+    @Then("The product name should be displayed")
+    public void theProductNameShouldBeDisplayed() {
+        Assertions.assertThat(DriverUtils.waitElementToBeVisible(homePage.searchItem, 10).isDisplayed()).isTrue();
+    }
 }
