@@ -14,3 +14,8 @@ Feature: Home page
      Given User is on Home page
      When User sorts products from low to high
      Then Products display in the low to high order
+
+    Scenario: Display products from high to low
+      Given User is on Home page
+      When User sorts products from high to low
+      Then Products display in the high to low order

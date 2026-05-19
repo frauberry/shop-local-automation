@@ -16,6 +16,7 @@ public class HomePage {
     public By sortDropdown = By.id("sort-select");
     public By lowToHighOption = By.xpath("//option[text()='Price: Low → High']");
     public By price = By.xpath("//*[@class='price-current']");
+    public By highToLowOption = By.xpath("//option[text()='Price: High → Low']");
 
 
     public void addItemToTheCart() {
@@ -34,7 +35,22 @@ public class HomePage {
         for (int i = 0; i < prices.size()-1; i++) {
             String price1 = prices.get(i).getText().substring(1);
             String  price2 = prices.get(i+1).getText().substring(1);
-            if (Integer.parseInt(price1) > Integer.parseInt(price2)){
+            if (Double.parseDouble(price1) > Double.parseDouble(price2)){
+                return false;
+            }
+        }
+        return true;
+    }
+    public void sortItemsFromHighToLow() {
+        getDriver().findElement(sortDropdown).click();
+        getDriver().findElement(highToLowOption).click();
+    }
+    public boolean arePricesDisplayedFromHighToLow() {
+        List<WebElement> prices = getDriver().findElements(price);
+        for (int i = 0; i < prices.size()-1; i++) {
+            String price1 = prices.get(i).getText().substring(1);
+            String  price2 = prices.get(i+1).getText().substring(1);
+            if (Double.parseDouble(price1) < Double.parseDouble(price2)){
                 return false;
             }
         }

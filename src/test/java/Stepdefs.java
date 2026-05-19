@@ -59,4 +59,14 @@ public class Stepdefs {
     public void productsDisplayInTheLowToHighOrder() {
         Assertions.assertThat(homePage.arePricesDisplayedFromLowToHigh()).isTrue();
     }
+
+    @When("User sorts products from high to low")
+    public void userSortsProductsFromHighToLow() {
+        homePage.sortItemsFromHighToLow();
+    }
+
+    @Then("Products display in the high to low order")
+    public void productsDisplayInTheHighToLowOrder() {
+        Assertions.assertThat(homePage.arePricesDisplayedFromHighToLow()).isTrue();
+    }
 }
