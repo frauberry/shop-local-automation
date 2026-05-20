@@ -55,7 +55,7 @@ public class Stepdefs {
         homePage.sortItemsFromLowToHigh();
     }
 
-    @Then("Products display in the low to high order")
+    @Then("Products should display in the low to high order")
     public void productsDisplayInTheLowToHighOrder() {
         Assertions.assertThat(homePage.arePricesDisplayedFromLowToHigh()).isTrue();
     }
@@ -65,8 +65,18 @@ public class Stepdefs {
         homePage.sortItemsFromHighToLow();
     }
 
-    @Then("Products display in the high to low order")
+    @Then("Products should display in the high to low order")
     public void productsDisplayInTheHighToLowOrder() {
         Assertions.assertThat(homePage.arePricesDisplayedFromHighToLow()).isTrue();
+    }
+
+    @When("User sorts products from top rated to less rated")
+    public void userSortsProductsFromTopRatedToLessRated() {
+        homePage.sortItemsFromTopRated();
+    }
+
+    @Then("Top rated products should display first")
+    public void topRatedProductsShouldDisplayFirst() {
+        Assertions.assertThat(homePage.isRateDisplayedFromTopRated()).isTrue();
     }
 }
