@@ -85,8 +85,19 @@ public class Stepdefs {
         homePage.changeViewToListView();
     }
 
-    @Then("Products should be display in the List View")
+    @Then("Products should be displayed in the List View")
     public void productsShouldBeDisplayInTheListView() {
         Assertions.assertThat(homePage.isListViewDisplayed()).isTrue();
+    }
+
+    @When("User changes view to Grid View")
+    public void userChangesViewToGridView() {
+        homePage.changeViewToListView();
+        homePage.changeViewToGridView();
+    }
+
+    @Then("Products should be displayed in the Grid View")
+    public void productsShouldBeDisplayedInTheGridView() {
+        Assertions.assertThat(homePage.isGridViewDisplayed()).isTrue();
     }
 }

@@ -28,5 +28,10 @@ Feature: Home page
   Scenario: Display products in list view
     Given User is on Home page
     When User changes view to List View
-    Then Products should be display in the List View
+    Then Products should be displayed in the List View
+
+  Scenario: Display products in grid view
+    Given User is on Home page
+    When User changes view to Grid View
+    Then Products should be displayed in the Grid View
 
