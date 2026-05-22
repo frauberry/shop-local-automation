@@ -21,6 +21,8 @@ public class HomePage {
     public By rate = By.xpath("//*[@class='stars-count']");
     public By listViewIcon = By.id("list-btn");
     public By listView = By.xpath("//*[@class='products-list']");
+    public By gridViewIcon = By.id("grid-btn");
+    public By gridView = By.xpath("//*[@class='products-grid']");
 
     public void addItemToTheCart() {
         sleep(2);
@@ -79,5 +81,11 @@ public class HomePage {
     }
     public boolean isListViewDisplayed() {
         return getDriver().findElement(listView).isDisplayed();
+    }
+    public void changeViewToGridView() {
+        getDriver().findElement(gridViewIcon).click();
+    }
+    public boolean isGridViewDisplayed() {
+        return getDriver().findElement(gridView).isDisplayed();
     }
 }
