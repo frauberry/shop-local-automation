@@ -19,7 +19,8 @@ public class HomePage {
     public By highToLowOption = By.xpath("//option[text()='Price: High → Low']");
     public By topRatedOption = By.xpath("//option[text()='Top Rated']");
     public By rate = By.xpath("//*[@class='stars-count']");
-
+    public By listViewIcon = By.id("list-btn");
+    public By listView = By.xpath("//*[@class='products-list']");
 
     public void addItemToTheCart() {
         sleep(2);
@@ -72,5 +73,11 @@ public class HomePage {
             }
         }
         return true;
+    }
+    public void changeViewToListView() {
+        getDriver().findElement(listViewIcon).click();
+    }
+    public boolean isListViewDisplayed() {
+        return getDriver().findElement(listView).isDisplayed();
     }
 }
