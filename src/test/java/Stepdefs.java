@@ -79,4 +79,14 @@ public class Stepdefs {
     public void topRatedProductsShouldDisplayFirst() {
         Assertions.assertThat(homePage.isRateDisplayedFromTopRated()).isTrue();
     }
+
+    @When("User changes view to List View")
+    public void userChangesViewToListView() {
+        homePage.changeViewToListView();
+    }
+
+    @Then("Products should be display in the List View")
+    public void productsShouldBeDisplayInTheListView() {
+        Assertions.assertThat(homePage.isListViewDisplayed()).isTrue();
+    }
 }
