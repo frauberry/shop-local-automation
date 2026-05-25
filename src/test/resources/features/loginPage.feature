@@ -1,0 +1,12 @@
+Feature: Login Page
+
+  Scenario: User successfully creates a new account
+    Given User is on Login page
+    When User fills out fields
+    And User creates a new account
+    Then A new account should be created
+
+  Scenario: User successfully signs in
+    Given User is on Login page
+    When User signs in
+    Then User should be successfully signed in

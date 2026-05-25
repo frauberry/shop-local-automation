@@ -1,22 +1,29 @@
 import io.cucumber.java.After;
 import io.cucumber.java.Before;
+import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.assertj.core.api.Assertions;
+import org.testng.Assert;
 import website.core.driver.DriverManager;
+import website.pages.AccountPage;
 import website.pages.HomePage;
+import website.pages.LoginPage;
 import website.utils.DriverUtils;
 
 public class Stepdefs {
 
     private static final String HOME_PAGE_URL = "http://localhost:3011/";
+    private static final String LOGIN_PAGE_URL = "http://localhost:3011/login.html";
     private HomePage homePage;
+    private LoginPage loginPage;
 
     @Before
     public void setUp() {
         DriverManager.start("chrome", false);
         homePage = new HomePage();
+        loginPage = new LoginPage();
     }
 
     @After
@@ -99,5 +106,35 @@ public class Stepdefs {
     @Then("Products should be displayed in the Grid View")
     public void productsShouldBeDisplayedInTheGridView() {
         Assertions.assertThat(homePage.isGridViewDisplayed()).isTrue();
+    }
+
+    @Given("User is on Login page")
+    public void userIsOnLoginPage() {
+        DriverManager.get().navigate().to(LOGIN_PAGE_URL);
+    }
+
+    @When("User signs in")
+    public void userSignsIn() {
+        loginPage.signIn();
+    }
+
+    @Then("User should be successfully signed in")
+    public void userShouldBeSuccessfullySignedIn() {
+        Assertions.assertThat(homePage.isAccountNameDisplayed()).isTrue();
+    }
+
+    @When("User fills out fields")
+    public void userFillsOutFields() {
+        loginPage.fillOutFields();
+    }
+
+    @And("User creates a new account")
+    public void userCreatesANewAccount() {
+        loginPage.createAccount();
+    }
+
+    @Then("A new account should be created")
+    public void aNewAccountShouldBeCreated() {
+        Assertions.assertThat(homePage.isAccountNameDisplayed()).isTrue();
     }
 }
