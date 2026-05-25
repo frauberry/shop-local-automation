@@ -1,0 +1,38 @@
+package website.pages;
+
+import org.openqa.selenium.By;
+
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+
+import static website.utils.DriverUtils.getDriver;
+
+public class LoginPage {
+    public By createAccountTab = By.id("register-tab");
+    public By fullName = By.id("reg-name");
+    public By regEmail = By.id("reg-email");
+    public By regPassword = By.id("reg-password");
+    public By regConfirmPassword = By.id("reg-confirm");
+    public By createAccountButton = By.id("register-btn");
+    public By signInEmail = By.id("login-email");
+    public By signInPassword = By.id("login-password");
+    public By signInButton = By.id("login-btn");
+
+    public void fillOutFields() {
+        String timestamp = LocalDateTime.now().format(DateTimeFormatter.ofPattern("HHmmssddMMyyyy"));
+        String email = "olga" + timestamp + "@yopmail.com";
+        getDriver().findElement(createAccountTab).click();
+        getDriver().findElement(fullName).sendKeys("Olga Sachkova");
+        getDriver().findElement(regEmail).sendKeys(email);
+        getDriver().findElement(regPassword).sendKeys("olga123!");
+        getDriver().findElement(regConfirmPassword).sendKeys("olga123!");
+    }
+    public void createAccount() {
+        getDriver().findElement(createAccountButton).click();
+    }
+    public void signIn() {
+        getDriver().findElement(signInEmail).sendKeys("olga12345@yopmail.com");
+        getDriver().findElement(signInPassword).sendKeys("olga123!");
+        getDriver().findElement(signInButton).click();
+    }
+}

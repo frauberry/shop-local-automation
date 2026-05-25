@@ -23,69 +23,86 @@ public class HomePage {
     public By listView = By.xpath("//*[@class='products-list']");
     public By gridViewIcon = By.id("grid-btn");
     public By gridView = By.xpath("//*[@class='products-grid']");
+    public By accountIcon = By.xpath("//a[@class='icon-btn'][contains(@href,'account')]");
 
     public void addItemToTheCart() {
         sleep(2);
         getDriver().findElement(addToCartButton).click();
     }
+
     public void searchForTheItem() {
         getDriver().findElement(searchField).sendKeys("shirt");
     }
+
     public void sortItemsFromLowToHigh() {
         getDriver().findElement(sortDropdown).click();
         getDriver().findElement(lowToHighOption).click();
     }
+
     public boolean arePricesDisplayedFromLowToHigh() {
         List<WebElement> prices = getDriver().findElements(price);
-        for (int i = 0; i < prices.size()-1; i++) {
+        for (int i = 0; i < prices.size() - 1; i++) {
             String price1 = prices.get(i).getText().substring(1);
-            String  price2 = prices.get(i+1).getText().substring(1);
-            if (Double.parseDouble(price1) > Double.parseDouble(price2)){
+            String price2 = prices.get(i + 1).getText().substring(1);
+            if (Double.parseDouble(price1) > Double.parseDouble(price2)) {
                 return false;
             }
         }
         return true;
     }
+
     public void sortItemsFromHighToLow() {
         getDriver().findElement(sortDropdown).click();
         getDriver().findElement(highToLowOption).click();
     }
+
     public boolean arePricesDisplayedFromHighToLow() {
         List<WebElement> prices = getDriver().findElements(price);
-        for (int i = 0; i < prices.size()-1; i++) {
+        for (int i = 0; i < prices.size() - 1; i++) {
             String price1 = prices.get(i).getText().substring(1);
-            String  price2 = prices.get(i+1).getText().substring(1);
-            if (Double.parseDouble(price1) < Double.parseDouble(price2)){
+            String price2 = prices.get(i + 1).getText().substring(1);
+            if (Double.parseDouble(price1) < Double.parseDouble(price2)) {
                 return false;
             }
         }
         return true;
     }
+
     public void sortItemsFromTopRated() {
         getDriver().findElement(sortDropdown).click();
         getDriver().findElement(topRatedOption).click();
     }
+
     public boolean isRateDisplayedFromTopRated() {
         List<WebElement> rates = getDriver().findElements(rate);
-        for (int i = 0; i < rates.size()-1; i++) {
-            String rate1 = rates.get(i).getText().substring(0,3);
-            String rate2 = rates.get(i+1).getText().substring(0,3);
+        for (int i = 0; i < rates.size() - 1; i++) {
+            String rate1 = rates.get(i).getText().substring(0, 3);
+            String rate2 = rates.get(i + 1).getText().substring(0, 3);
             if (Double.parseDouble(rate1) < Double.parseDouble(rate2)) {
                 return false;
             }
         }
         return true;
     }
+
     public void changeViewToListView() {
         getDriver().findElement(listViewIcon).click();
     }
+
     public boolean isListViewDisplayed() {
         return getDriver().findElement(listView).isDisplayed();
     }
+
     public void changeViewToGridView() {
         getDriver().findElement(gridViewIcon).click();
     }
+
     public boolean isGridViewDisplayed() {
         return getDriver().findElement(gridView).isDisplayed();
+    }
+
+    public boolean isAccountNameDisplayed() {
+        sleep(2);
+        return getDriver().findElement(accountIcon).isDisplayed();
     }
 }
