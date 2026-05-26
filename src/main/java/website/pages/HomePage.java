@@ -24,6 +24,7 @@ public class HomePage {
     public By gridViewIcon = By.id("grid-btn");
     public By gridView = By.xpath("//*[@class='products-grid']");
     public By accountIcon = By.xpath("//a[@class='icon-btn'][contains(@href,'account')]");
+    public By signInIcon = By.xpath("//a[@class='icon-btn'][contains(@href,'login')]");
 
     public void addItemToTheCart() {
         sleep(2);
@@ -104,5 +105,12 @@ public class HomePage {
     public boolean isAccountNameDisplayed() {
         sleep(2);
         return getDriver().findElement(accountIcon).isDisplayed();
+    }
+
+    public void redirectToAccount() {
+        getDriver().findElement(accountIcon).click();
+    }
+    public boolean isSignInIconDisplayed() {
+        return getDriver().findElement(signInIcon).isDisplayed();
     }
 }

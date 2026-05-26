@@ -18,12 +18,14 @@ public class Stepdefs {
     private static final String LOGIN_PAGE_URL = "http://localhost:3011/login.html";
     private HomePage homePage;
     private LoginPage loginPage;
+    private AccountPage accountPage;
 
     @Before
     public void setUp() {
         DriverManager.start("chrome", false);
         homePage = new HomePage();
         loginPage = new LoginPage();
+        accountPage = new AccountPage();
     }
 
     @After
@@ -136,5 +138,22 @@ public class Stepdefs {
     @Then("A new account should be created")
     public void aNewAccountShouldBeCreated() {
         Assertions.assertThat(homePage.isAccountNameDisplayed()).isTrue();
+    }
+
+    @Given("User is on Account page")
+    public void userIsOnAccountPage() {
+        DriverManager.get().navigate().to(LOGIN_PAGE_URL);
+        loginPage.signIn();
+    }
+
+    @When("User signs out")
+    public void userSignsOut() {
+        homePage.redirectToAccount();
+        accountPage.signOut();
+    }
+
+    @Then("User should be successfully sign out")
+    public void userShouldBeSuccessfullySignOut() {
+        Assertions.assertThat(homePage.isSignInIconDisplayed()).isTrue();
     }
 }
