@@ -156,4 +156,14 @@ public class Stepdefs {
     public void userShouldBeSuccessfullySignOut() {
         Assertions.assertThat(homePage.isSignInIconDisplayed()).isTrue();
     }
+
+    @When("User continues shopping without an account")
+    public void userContinuesShoppingWithoutAnAccount() {
+        loginPage.continueShoppingWithNoAccount();
+    }
+
+    @Then("User should land on Home Page")
+    public void userShouldLandOnHomePage() {
+        Assertions.assertThat(homePage.isSignInIconDisplayed()).isTrue();
+    }
 }
