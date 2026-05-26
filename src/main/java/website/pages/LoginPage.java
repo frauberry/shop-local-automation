@@ -17,6 +17,7 @@ public class LoginPage {
     public By signInEmail = By.id("login-email");
     public By signInPassword = By.id("login-password");
     public By signInButton = By.id("login-btn");
+    public By continueShoppingButton = By.xpath("//a[contains(text(),'Continue')]");
 
     public void fillOutFields() {
         String timestamp = LocalDateTime.now().format(DateTimeFormatter.ofPattern("HHmmssddMMyyyy"));
@@ -34,5 +35,8 @@ public class LoginPage {
         getDriver().findElement(signInEmail).sendKeys("olga12345@yopmail.com");
         getDriver().findElement(signInPassword).sendKeys("olga123!");
         getDriver().findElement(signInButton).click();
+    }
+    public void continueShoppingWithNoAccount() {
+        getDriver().findElement(continueShoppingButton).click();
     }
 }
