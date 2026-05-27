@@ -22,7 +22,8 @@ public class Stepdefs {
 
     @Before
     public void setUp() {
-        DriverManager.start("chrome", false);
+        boolean headless = Boolean.parseBoolean(System.getProperty("headless", "false"));
+        DriverManager.start("chrome", headless);
         homePage = new HomePage();
         loginPage = new LoginPage();
         accountPage = new AccountPage();
