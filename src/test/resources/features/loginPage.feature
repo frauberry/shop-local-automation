@@ -20,3 +20,8 @@ Feature: Login Page
     Given User is on Login page
     When User signs in with empty fields
     Then Error is displayed
+
+  Scenario: Password Inline Error is displayed when user signs in with empty password field
+    Given User is on Login page
+    When User signs in with empty password field
+    Then Password Inline Error is displayed

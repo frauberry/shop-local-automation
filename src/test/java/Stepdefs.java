@@ -177,4 +177,14 @@ public class Stepdefs {
     public void errorIsDisplayed() {
         Assertions.assertThat(!loginPage.getInlineErrors().contains(false)).isTrue();
     }
+
+    @When("User signs in with empty password field")
+    public void userSignsInWithEmptyPasswordField() {
+        loginPage.signInWithEmptyPasswordField();
+    }
+
+    @Then("Password Inline Error is displayed")
+    public void passwordInlineErrorIsDisplayed() {
+        Assertions.assertThat(loginPage.isPasswordErrorDisplayed()).isTrue();
+    }
 }
