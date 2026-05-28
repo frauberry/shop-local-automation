@@ -167,4 +167,14 @@ public class Stepdefs {
     public void userShouldLandOnHomePage() {
         Assertions.assertThat(homePage.isSignInIconDisplayed()).isTrue();
     }
+
+    @When("User signs in with empty fields")
+    public void userSignsInWithEmptyFields() {
+        loginPage.signInWithEmptyFields();
+    }
+
+    @Then("Error is displayed")
+    public void errorIsDisplayed() {
+        Assertions.assertThat(!loginPage.getInlineErrors().contains(false)).isTrue();
+    }
 }

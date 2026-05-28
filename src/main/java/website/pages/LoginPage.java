@@ -4,6 +4,8 @@ import org.openqa.selenium.By;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+import java.util.List;
 
 import static website.utils.DriverUtils.getDriver;
 
@@ -18,6 +20,10 @@ public class LoginPage {
     public By signInPassword = By.id("login-password");
     public By signInButton = By.id("login-btn");
     public By continueShoppingButton = By.xpath("//a[contains(text(),'Continue')]");
+    public By emailError = By.id("login-email-error");
+    public By passwordError = By.id("login-password-error");
+
+
 
     public void fillOutFields() {
         String timestamp = LocalDateTime.now().format(DateTimeFormatter.ofPattern("HHmmssddMMyyyy"));
@@ -39,4 +45,14 @@ public class LoginPage {
     public void continueShoppingWithNoAccount() {
         getDriver().findElement(continueShoppingButton).click();
     }
+    public void signInWithEmptyFields() {
+        getDriver().findElement(signInButton).click();
+    }
+    public List <Boolean> getInlineErrors() {
+        List <Boolean> errors = new ArrayList<>();
+        errors.add(getDriver().findElement(emailError).isDisplayed());
+        errors.add(getDriver().findElement(passwordError).isDisplayed());
+        return errors;
+    }
+
 }
