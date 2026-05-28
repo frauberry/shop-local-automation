@@ -2,12 +2,11 @@ package website.pages;
 
 import org.openqa.selenium.By;
 
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
 import static website.utils.DriverUtils.getDriver;
+import static website.utils.TestData.generateEmail;
 
 public class LoginPage {
     public By createAccountTab = By.id("register-tab");
@@ -26,8 +25,7 @@ public class LoginPage {
 
 
     public void fillOutFields() {
-        String timestamp = LocalDateTime.now().format(DateTimeFormatter.ofPattern("HHmmssddMMyyyy"));
-        String email = "olga" + timestamp + "@yopmail.com";
+        String email = generateEmail();
         getDriver().findElement(createAccountTab).click();
         getDriver().findElement(fullName).sendKeys("Olga Sachkova");
         getDriver().findElement(regEmail).sendKeys(email);
@@ -53,6 +51,14 @@ public class LoginPage {
         errors.add(getDriver().findElement(emailError).isDisplayed());
         errors.add(getDriver().findElement(passwordError).isDisplayed());
         return errors;
+    }
+    public void signInWithEmptyPasswordField() {
+        String email = generateEmail();
+        getDriver().findElement(signInEmail).sendKeys(email);
+        getDriver().findElement(signInButton).click();
+    }
+    public boolean isPasswordErrorDisplayed() {
+        return getDriver().findElement(passwordError).isDisplayed();
     }
 
 }
