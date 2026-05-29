@@ -22,8 +22,6 @@ public class LoginPage {
     public By emailError = By.id("login-email-error");
     public By passwordError = By.id("login-password-error");
 
-
-
     public void fillOutFields() {
         String email = generateEmail();
         getDriver().findElement(createAccountTab).click();
@@ -60,5 +58,11 @@ public class LoginPage {
     public boolean isPasswordErrorDisplayed() {
         return getDriver().findElement(passwordError).isDisplayed();
     }
-
+    public void signInWithEmptyEmailField() {
+        getDriver().findElement(signInPassword).sendKeys("olga123!");
+        getDriver().findElement(signInButton).click();
+    }
+    public boolean isEmailErrorDisplayed() {
+        return getDriver().findElement(emailError).isDisplayed();
+    }
 }

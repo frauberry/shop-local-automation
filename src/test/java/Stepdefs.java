@@ -187,4 +187,14 @@ public class Stepdefs {
     public void passwordInlineErrorIsDisplayed() {
         Assertions.assertThat(loginPage.isPasswordErrorDisplayed()).isTrue();
     }
+
+    @When("User signs in with empty email field")
+    public void userSignsInWithEmptyEmailField() {
+        loginPage.signInWithEmptyEmailField();
+    }
+
+    @Then("Email Inline Error is displayed")
+    public void emailInlineErrorIsDisplayed() {
+        Assertions.assertThat(loginPage.isEmailErrorDisplayed()).isTrue();
+    }
 }
