@@ -21,6 +21,7 @@ public class LoginPage {
     public By continueShoppingButton = By.xpath("//a[contains(text(),'Continue')]");
     public By emailError = By.id("login-email-error");
     public By passwordError = By.id("login-password-error");
+    public String emailErrorMessage = "//span[contains(text(),'%s')]";
 
     public void fillOutFields() {
         String email = generateEmail();
@@ -64,5 +65,12 @@ public class LoginPage {
     }
     public boolean isEmailErrorDisplayed() {
         return getDriver().findElement(emailError).isDisplayed();
+    }
+    public void enterEmail(String email) {
+        getDriver().findElement(signInEmail).sendKeys(email);
+        getDriver().findElement(signInButton).click();
+    }
+    public boolean isInlineEmailErrorDisplayed(String errorMessage) {
+        return getDriver().findElement(By.xpath(String.format(emailErrorMessage,errorMessage))).isDisplayed();
     }
 }
