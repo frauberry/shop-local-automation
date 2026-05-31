@@ -197,4 +197,14 @@ public class Stepdefs {
     public void emailInlineErrorIsDisplayed() {
         Assertions.assertThat(loginPage.isEmailErrorDisplayed()).isTrue();
     }
+
+    @When("User enters invalid {string} email")
+    public void userEntersInvalidEmail(String email) {
+        loginPage.enterEmail(email);
+    }
+
+    @Then("Email Inline Error {string} message should be displayed")
+    public void emailInlineErrorMessageShouldBeDisplayed(String errorMessage) {
+        Assertions.assertThat(loginPage.isInlineEmailErrorDisplayed(errorMessage)).isTrue();
+    }
 }

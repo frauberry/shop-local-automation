@@ -26,7 +26,17 @@ Feature: Login Page
     When User signs in with empty password field
     Then Password Inline Error is displayed
 
-    Scenario: Email inline Error is displayed when user signs in with empty email field
-      Given User is on Login page
-      When User signs in with empty email field
-      Then Email Inline Error is displayed
+  Scenario: Email inline Error is displayed when user signs in with empty email field
+    Given User is on Login page
+    When User signs in with empty email field
+    Then Email Inline Error is displayed
+
+  Scenario Outline: Invalid emails in Sign in form
+    Given User is on Login page
+    When User enters invalid "<email>" email
+    Then Email Inline Error "<errorMessage>" message should be displayed
+    Examples:
+      | email           | errorMessage                 |
+      | olga @gmail.com | Enter a valid email address. |
+      | olga gmail.com  | Enter a valid email address. |
+      | olga@gmailcom   | Enter a valid email address. |
