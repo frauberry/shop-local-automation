@@ -40,3 +40,18 @@ Feature: Login Page
       | olga @gmail.com | Enter a valid email address. |
       | olga gmail.com  | Enter a valid email address. |
       | olga@gmailcom   | Enter a valid email address. |
+
+  Scenario Outline: Invalid passports in Sign in form
+    Given User is on Login page
+    When User enters invalid "<password>" password
+    Then Password Inline Error "<errorMessage>" message should be displayed
+    Examples:
+      | password              | errorMessage              |
+      | Olga 123!             | Invalid email or password |
+      | olga123!              | Invalid email or password |
+      | OLGA123!              | Invalid email or password |
+      | Olga123               | Invalid email or password |
+      | Olga!                 | Invalid email or password |
+      | Ol1!                  | Invalid email or password |
+      | Olga123!OlgaOlgaOlgaO | Invalid email or password |
+
