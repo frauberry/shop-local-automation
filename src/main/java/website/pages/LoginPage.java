@@ -23,6 +23,7 @@ public class LoginPage {
     public By passwordError = By.id("login-password-error");
     public String emailErrorMessage = "//span[contains(text(),'%s')]";
     public By passwordErrorMessage = By.id("login-error");
+    public By fullNameErrorMessage = By.id("reg-name-error");
 
     public void fillOutFields() {
         String email = generateEmail();
@@ -83,5 +84,14 @@ public class LoginPage {
     public boolean isPasswordErrorMessageDisplayed(String errorMessage) {
         String error = getDriver().findElement(passwordErrorMessage).getText();
         return error.equals(errorMessage);
+    }
+    public void fillOutFullName(String fullNameField) {
+        getDriver().findElement(createAccountTab).click();
+        getDriver().findElement(fullName).sendKeys(fullNameField);
+        getDriver().findElement(createAccountButton).click();
+    }
+    public boolean isFullNameErrorMessageDisplayed(String errorMessage) {
+        String fullNameError = getDriver().findElement(fullNameErrorMessage).getText();
+        return fullNameError.equals(errorMessage);
     }
 }

@@ -55,3 +55,13 @@ Feature: Login Page
       | Ol1!                  | Invalid email or password |
       | Olga123!OlgaOlgaOlgaO | Invalid email or password |
 
+  Scenario Outline: Invalid Full Name in Create Account form
+    Given User is on Login page
+    When User enters invalid "<fullName>"
+    Then Full Name inline error "<errorMessage>" message should be displayed
+    Examples:
+      | fullName           | errorMessage                                           |
+      | O                  | Name must be at least 2 characters.                    |
+      | ChristopherRobbins | Name must be 15 characters or fewer.                   |
+      | Nika%              | Name must contain letters only, no special characters. |
+
