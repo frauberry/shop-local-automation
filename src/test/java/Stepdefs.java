@@ -217,4 +217,15 @@ public class Stepdefs {
     public void passwordInlineErrorMessageShouldBeDisplayed(String errorMessage) {
         Assertions.assertThat(loginPage.isPasswordErrorMessageDisplayed(errorMessage)).isTrue();
     }
+
+    @When("User enters invalid {string}")
+    public void userEntersInvalid(String fullNameField) {
+        loginPage.fillOutFullName(fullNameField);
+        loginPage.createAccount();
+    }
+
+    @Then("Full Name inline error {string} message should be displayed")
+    public void fullNameInlineErrorMessageShouldBeDisplayed(String errorMessage) {
+        Assertions.assertThat(loginPage.isFullNameErrorMessageDisplayed(errorMessage)).isTrue();
+    }
 }
