@@ -35,3 +35,8 @@ Feature: Home page
     When User changes view to Grid View
     Then Products should be displayed in the Grid View
 
+  Scenario: Add same item twice - quantity increments
+    Given User is on Home page
+    When User adds the same product to the cart twice
+    Then The product quantity in the cart should be 2
+
