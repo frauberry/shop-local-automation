@@ -7,6 +7,7 @@ import java.util.List;
 
 import static website.utils.DriverUtils.getDriver;
 import static website.utils.DriverUtils.sleep;
+import static website.utils.DriverUtils.waitElementToBeClickable;
 
 public class HomePage {
     public By addToCartButton = By.xpath("//a[contains(text(),'Wireless')]/ancestor::div[@class='product-card']//button[contains(text(),'Add to Cart')]");
@@ -28,6 +29,13 @@ public class HomePage {
 
     public void addItemToTheCart() {
         sleep(2);
+        getDriver().findElement(addToCartButton).click();
+    }
+
+    public void addItemToTheCartTwice() {
+        sleep(2);
+        getDriver().findElement(addToCartButton).click();
+        waitElementToBeClickable(addToCartButton, 5);
         getDriver().findElement(addToCartButton).click();
     }
 

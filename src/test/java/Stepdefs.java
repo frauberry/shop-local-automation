@@ -8,6 +8,7 @@ import org.assertj.core.api.Assertions;
 import org.testng.Assert;
 import website.core.driver.DriverManager;
 import website.pages.AccountPage;
+import website.pages.CartPage;
 import website.pages.HomePage;
 import website.pages.LoginPage;
 import website.utils.DriverUtils;
@@ -16,9 +17,11 @@ public class Stepdefs {
 
     private static final String HOME_PAGE_URL = "http://localhost:3011/";
     private static final String LOGIN_PAGE_URL = "http://localhost:3011/login.html";
+    private static final String CART_PAGE_URL = "http://localhost:3011/cart.html";
     private HomePage homePage;
     private LoginPage loginPage;
     private AccountPage accountPage;
+    private CartPage cartPage;
 
     @Before
     public void setUp() {
@@ -27,6 +30,7 @@ public class Stepdefs {
         homePage = new HomePage();
         loginPage = new LoginPage();
         accountPage = new AccountPage();
+        cartPage = new CartPage();
     }
 
     @After
@@ -227,5 +231,17 @@ public class Stepdefs {
     @Then("Full Name inline error {string} message should be displayed")
     public void fullNameInlineErrorMessageShouldBeDisplayed(String errorMessage) {
         Assertions.assertThat(loginPage.isFullNameErrorMessageDisplayed(errorMessage)).isTrue();
+    }
+
+    @When("User adds the same product to the cart twice")
+    public void userAddsTheSameProductToTheCartTwice() {
+        DriverUtils.scrollDownToElement(homePage.addToCartButton);
+        homePage.addItemToTheCartTwice();
+    }
+
+    @Then("The product quantity in the cart should be 2")
+    public void theProductQuantityInTheCartShouldBe2() {
+        DriverManager.get().navigate().to(CART_PAGE_URL);
+        Assertions.assertThat(DriverUtils.waitElementToBeVisible(cartPage.quantityDisplay, 10).getText()).isEqualTo("2");
     }
 }
